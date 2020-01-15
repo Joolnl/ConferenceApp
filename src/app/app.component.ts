@@ -1,13 +1,17 @@
-import {IdleMonitorService} from '@scullyio/ng-lib'; 
- import { Component } from '@angular/core';
+import { IdleMonitorService } from '@scullyio/ng-lib';
+import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    template: `<router-outlet></router-outlet>`,
+    styleUrls: ['./app.component.scss']
 })
-export class AppComponent { 
- constructor (private idle: IdleMonitorService) { } 
+export class AppComponent {
 
-  title = 'ConferenceApp';
+    constructor(private idle: IdleMonitorService, translate: TranslateService) {
+        translate.setDefaultLang('en');
+        translate.use('en');
+    }
+
 }
