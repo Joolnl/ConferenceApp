@@ -1,0 +1,15 @@
+.search-results {
+  position: absolute;
+  background: #fff;
+  width: 227px;
+  border-radius: 0 0 5px 5px;
+  border: 1px solid black;
+}
+.navbar-nav {
+  width: 100%;
+  .nav-item {
+    &.search {
+      width: 100%;
+    }
+  }
+}

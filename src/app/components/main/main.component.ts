@@ -1,51 +1,49 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { debounceTime, takeUntil, map, tap, switchMap } from 'rxjs/operators';
+import { Subject, Observable } from 'rxjs';
+import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
-    selector: 'app-main',
-    templateUrl: './main.component.html',
-    styleUrls: ['./main.component.scss']
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit, OnDestroy {
+  githubPath = environment.github;
 
-    githubPath = environment.github;
+  destroy$ = new Subject<boolean>();
 
-    destroy$ = new Subject<boolean>();
+  searchResults$: Observable<any>;
 
-    searchForm: FormGroup;
+  searchForm: FormGroup;
 
-    get search(): AbstractControl {
-        return this.searchForm.get('search');
-    }
+  get search(): AbstractControl {
+    return this.searchForm.get('search');
+  }
 
-    constructor() {
-    }
+  constructor(private postsService: PostsService) {}
 
-    ngOnInit(): void {
-        this.searchForm = this.createSearchForm();
-    }
+  ngOnInit(): void {
+    this.searchForm = this.createSearchForm();
 
-    ngOnDestroy(): void {
-        this.destroy$.next(true);
-        this.destroy$.complete();
-    }
+    this.searchResults$ = this.search.valueChanges.pipe(
+      debounceTime(400),
+      takeUntil(this.destroy$),
+      switchMap(searchvalue => this.postsService.getPosts(searchvalue)),
+      tap(bla => console.log(bla))
+    );
+  }
 
-    createSearchForm() {
-        return new FormGroup({
-            search: new FormControl()
-        });
-    }
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
+  }
 
-    onSearch() {
-        this.search.valueChanges.pipe(
-            debounceTime(400),
-            takeUntil(this.destroy$)
-        ).subscribe(value => {
-            // TODO implement search method here
-        });
-    }
-
+  createSearchForm() {
+    return new FormGroup({
+      search: new FormControl()
+    });
+  }
 }
