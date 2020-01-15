@@ -1,15 +1,32 @@
 .search-results {
   position: absolute;
   background: #fff;
-  width: 227px;
-  border-radius: 0 0 5px 5px;
+  width: 100%;
+  border-radius: 0 0 0.375rem 0.375rem;
   border: 1px solid black;
+  list-style: none;
+  padding-inline-start: 0;
+
+  li {
+    padding-left: 1rem;
+  }
+  li:hover {
+    background: #333;
+    color: #fff;
+  }
 }
 .navbar-nav {
+  padding-left: 1rem;
+  padding-right: 1rem;
   width: 100%;
   .nav-item {
     &.search {
       width: 100%;
     }
   }
+}
+
+form {
+  width: 100%;
+  position: relative;
 }
