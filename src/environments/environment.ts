@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  github: 'https://github.com/Joolnl/ConferenceApp'
+  github: 'https://github.com/Joolnl/ConferenceApp',
+  algolia: {
+    appId: 'AE6N4RLBLC',
+    searchApiKey: 'f6acf781c7b32aab634ebca63f65d088'
+  }
 };
 
 /*
