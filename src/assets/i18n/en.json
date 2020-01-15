@@ -1,0 +1,10 @@
+{
+  "general": {
+    "menu": {
+      "search": "Search"
+    },
+    "not_found": {
+      "title": "The page you requested was not found."
+    }
+  }
+}

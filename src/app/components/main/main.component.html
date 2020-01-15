@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">ConferenceApp</a>
+
+    <form [formGroup]="searchForm" class="search-form">
+        <input type="text" class="form-control" formControlName="search"
+               [placeholder]="'general.menu.search' | translate"/>
+    </form>
+
+    <a class="btn btn-primary" [href]="githubPath" target="_blank">
+        <i class="fa fa-github"></i> GitHub
+    </a>
+
+</nav>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
