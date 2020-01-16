@@ -9,10 +9,6 @@ speaker: 'David Kingma'
 tags: 'Angular, PHP, Symphony'
 
 ---
-
-# JoolCon 
-### Joolcon is the latest and greatest Conference
-
 #### Description
 This is the description of the JoolCon Conference, latest tech will be presented here.
 

@@ -10,9 +10,6 @@ tags: 'Symphony,php,unit testing'
 
 ---
 
-# Unit testing in Php Symphony 
-### talk about unit testing in Php Symphony
-
 #### Description 
 Talk about the new way of unit testing in Php symphony
 
