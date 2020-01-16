@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "scripts",
   "scripts": {
-    "index": "m2j -c -o ./posts.json ../markdown/*",
+    "index": "m2j -c -o ./posts.json ../markdown/**/*.md",
     "save-index": "node index.js"
   },
   "author": "Bas van der Lee",
   "dependencies": {
     "algoliasearch": "^3.35.1",
     "lodash.values": "^4.3.0",
-    "markdown-to-json": "^0.5.4"
+    "markdown-to-json": "github:joolnl/markdown-to-json#master"
   }
 }
