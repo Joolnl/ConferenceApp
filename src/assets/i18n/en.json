@@ -6,5 +6,8 @@
     "not_found": {
       "title": "The page you requested was not found."
     }
+  },
+  "posts": {
+    "read_more": "Read more"
   }
 }
