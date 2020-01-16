@@ -9,8 +9,11 @@
                     <h4>{{routeContent.description}}</h4>
                     <hr>
                     <h6> {{routeContent.author}} - {{routeContent.date}}</h6>
+
+                    <img [src]="routeContent.image" />
+
                     <scully-content></scully-content>
-                    <div class="tagbox">
+                    <div class="tagbox" *ngIf="routeContent.tags">
                         <span class="badge badge-pill badge-secondary tag" *ngFor="let tag of routeContent.tags">
                             {{tag}}
                         </span>

@@ -11,21 +11,19 @@ import { Observable } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class PostDetailComponent implements OnInit {
-  routeContent$: Observable<ScullyRoute>
+  routeContent$: Observable<ScullyRoute>;
 
-  constructor(private route: ScullyRoutesService, private router: Router) { }
+  constructor(private route: ScullyRoutesService, private router: Router) {}
 
   ngOnInit() {
     let currentRoute = this.router.url;
     this.routeContent$ = this.route.available$.pipe(
-      map(a =>
-        a.find(url => url.route === currentRoute)
-      ),
+      map(a => a.find(url => url.route === currentRoute)),
       map(item => {
         if (item.tags) {
-          item.tags = item.tags.split(',').map((item) => {
-                return item.trim().toLowerCase();
-              })
+          item.tags = item.tags.split(',').map(item => {
+            return item.trim().toLowerCase();
+          });
         }
         return item;
       })

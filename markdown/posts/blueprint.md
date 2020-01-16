@@ -7,6 +7,7 @@ location: ''
 date: 'mm-dd-yyyy' 
 speaker: ''
 tags: 'Angular,bootstrap,Model view controller'
+image: 'http://placekitten.com/g/1920/1080'
 
 ---
 

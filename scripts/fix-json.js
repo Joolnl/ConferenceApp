@@ -21,6 +21,10 @@ Object.values(obj).forEach(item => {
     if (typeof item.content !== 'undefined') {
         item.content = converter.makeHtml(item.content);
     }
+
+    if (typeof item.preview !== 'undefined') {
+        item.preview = converter.makeHtml(item.preview);
+    }
 });
 
 console.log('\n * Update file * \n');

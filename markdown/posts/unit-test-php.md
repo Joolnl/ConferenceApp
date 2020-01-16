@@ -7,6 +7,7 @@ location: 'Amsterdam'
 date: '12-03-2020' 
 speaker: 'Mickey Mouse'
 tags: 'Symphony,php,unit testing'
+image: 'http://placekitten.com/g/1680/1050'
 
 ---
 

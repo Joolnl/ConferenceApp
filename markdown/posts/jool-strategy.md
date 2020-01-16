@@ -7,6 +7,7 @@ location: 'Bodegraven'
 date: '01-14-2020' 
 speaker: 'David Kingma'
 tags: 'Angular, PHP, Symphony'
+image: 'http://placekitten.com/g/1280/720'
 
 ---
 #### Description
