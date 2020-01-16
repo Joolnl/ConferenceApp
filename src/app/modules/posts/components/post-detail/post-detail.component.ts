@@ -5,13 +5,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.scss'],
   encapsulation: ViewEncapsulation.None
-
 })
 export class PostDetailComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

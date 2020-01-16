@@ -6,7 +6,6 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 import { ComponentsModule } from '@scullyio/ng-lib';
 import { SharedModule } from '../shared.module';
 
-
 @NgModule({
   declarations: [PostsOverviewComponent, PostDetailComponent],
   imports: [CommonModule, POSTS_ROUTING, ComponentsModule, SharedModule]
