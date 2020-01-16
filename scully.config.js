@@ -4,7 +4,7 @@ exports.config = {
     '/posts/:slug': {
       type: 'contentFolder',
       slug: {
-        folder: "./src"
+        folder: "./markdown/posts"
       }
     },
   }
