@@ -1,1 +1,71 @@
-{"2020-01-15-posts":{"title":"This is the posts","description":"posts description","publish":false,"image":"http://placekitten.com/g/800/600","preview":"<h1 id=\"pagepostsexample\">Page posts example</h1>","content":"<h1 id=\"pagepostsexample\">Page posts example</h1>","basename":"2020-01-15-posts"},"angular-9":{"title":"Angular 9","description":"Ng-conf about Angular 9 and rxjs with observables etc.","author":"Pascal van den hoek","conference":"Ng-Conf 2020","location":"Salt Lake City UT","date":"04-01-2020","speaker":"Jeff Cross","tags":["angular","rxjs"],"image":"https://pbs.twimg.com/profile_images/1196698060283187200/YBFemB3I_400x400.jpg","preview":"<p>![NgConf](https://pbs.twimg.com/profile_images/1196698060283187200/Y …</p>","content":"<p><img src=\"https://pbs.twimg.com/profile_images/1196698060283187200/YBFemB3I_400x400.jpg\" alt=\"NgConf\" /></p>\n<h4 id=\"description\">Description</h4>\n<hr />\n<p>Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds de 16e eeuw, toen een onbekende drukker een zethaak met letters nam en ze door elkaar husselde om een font-catalogus te maken. Het heeft niet alleen vijf eeuwen overleefd maar is ook, vrijwel onveranderd, overgenomen in elektronische letterzetting. Het is in de jaren '60 populair geworden met de introductie van Letraset vellen met Lorem Ipsum passages en meer recentelijk door desktop publishing software zoals Aldus PageMaker die versies van Lorem Ipsum bevatten.</p>\n<h4 id=\"interestingvideos\">Interesting videos</h4>\n<hr />\n<p><a href=\"https://www.youtube.com/watch?v=Sh37rIUL-d4\"><img src=\"https://i.ytimg.com/vi/CaqxXMWfadI/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCj-4MM7Xvgxgn7n-mcckzIMqf_gA\" alt=\"Angular9\" /></a></p>\n<h4 id=\"linkstopresentations\">Links to presentations</h4>\n<hr />\n<p>https://www.ng-conf.org/ </p>","iso8601Date":"2020-04-01T00:00:00+02:00","basename":"angular-9"},"blueprint":{"title":"","description":"","author":"","conference":"","location":"","date":"mm-dd-yyyy","speaker":"","tags":["angular","bootstrap","model view controller"],"image":"http://placekitten.com/g/1920/1080","preview":"<h4 id=\"description\">Description</h4>\n<p>fill under the Description the description of the …</p>","content":"<h4 id=\"description\">Description</h4>\n<p>fill under the Description the description of the presentations</p>\n<h4 id=\"interestingvideos\">Interesting videos</h4>\n<p>Place your urls to the videos</p>\n<h4 id=\"linkstopresentations\">Links to presentations</h4>\n<p>place your urls to the presentations</p>","iso8601Date":"Invalid date","basename":"blueprint"},"jool-strategy":{"title":"JoolCon","description":"Joolcon is the latest and greatest Conference.","author":"Pascal van den Hoek","conference":"JoolCon","location":"Bodegraven","date":"01-14-2020","speaker":"David Kingma","tags":["angular","php","symphony"],"image":"http://placekitten.com/g/1280/720","preview":"<h4 id=\"description\">Description</h4>\n<p>This is the description of the JoolCon Conference, …</p>","content":"<h4 id=\"description\">Description</h4>\n<p>This is the description of the JoolCon Conference, latest tech will be presented here.</p>\n<h5 id=\"date14012020\">Date: 14-01-2020</h5>\n<h4 id=\"interestingvideos\">Interesting videos</h4>\n<p><a href=\"https://www.youtube.com/watch?v=Sh37rIUL-d4\"><img src=\"https://i.ytimg.com/vi/CaqxXMWfadI/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCj-4MM7Xvgxgn7n-mcckzIMqf_gA\" alt=\"Scully\" /></a></p>\n<h4 id=\"linkstopresentations\">Links to presentations</h4>\n<p>https://jool.nl/home </p>","iso8601Date":"2020-01-14T00:00:00+01:00","basename":"jool-strategy"},"unit-test-php":{"title":"Unit testing in Php Symphony","description":"talk about unit testing in Php Symphony","author":"Pascal van den Hoek","conference":"SymphonyCon","location":"Amsterdam","date":"12-03-2020","speaker":"Mickey Mouse","tags":["symphony","php","unit testing"],"image":"http://placekitten.com/g/1680/1050","preview":"<h4 id=\"description\">Description</h4>\n<p>Talk about the new way of unit testing in Php …</p>","content":"<h4 id=\"description\">Description</h4>\n<p>Talk about the new way of unit testing in Php symphony</p>\n<h5 id=\"date12032020\">Date: 12-03-2020</h5>\n<h4 id=\"interestingvideos\">Interesting videos</h4>\n<p><a href=\"https://www.youtube.com/watch?v=Sh37rIUL-d4\"><img src=\"https://i.ytimg.com/vi/CaqxXMWfadI/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCj-4MM7Xvgxgn7n-mcckzIMqf_gA\" alt=\"Scully\" /></a></p>\n<h4 id=\"linkstopresentations\">Links to presentations</h4>\n<p>https://paris2020.symfony.com/ </p>","iso8601Date":"2020-12-03T00:00:00+01:00","basename":"unit-test-php"}}
+{
+  "2020-01-15-posts": {
+    "title": "This is the posts",
+    "description": "posts description",
+    "publish": false,
+    "image": "http://placekitten.com/g/800/600",
+    "preview": "# Page posts example",
+    "content": "\n\n# Page posts example\n",
+    "basename": "2020-01-15-posts"
+  },
+  "angular-9": {
+    "title": "Angular 9",
+    "description": "Ng-conf about Angular 9 and rxjs with observables etc.",
+    "author": "Pascal van den hoek",
+    "conference": "Ng-Conf 2020",
+    "location": "Salt Lake City UT",
+    "date": "04-01-2020",
+    "speaker": "Jeff Cross",
+    "tags": "angular,rxjs",
+    "image": "https://pbs.twimg.com/profile_images/1196698060283187200/YBFemB3I_400x400.jpg",
+    "preview": "![NgConf](https://pbs.twimg.com/profile_images/1196698060283187200/Y …",
+    "content": "\n\n![NgConf](https://pbs.twimg.com/profile_images/1196698060283187200/YBFemB3I_400x400.jpg)\n\n#### Description \n\n---\n\nLorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds de 16e eeuw, toen een onbekende drukker een zethaak met letters nam en ze door elkaar husselde om een font-catalogus te maken. Het heeft niet alleen vijf eeuwen overleefd maar is ook, vrijwel onveranderd, overgenomen in elektronische letterzetting. Het is in de jaren '60 populair geworden met de introductie van Letraset vellen met Lorem Ipsum passages en meer recentelijk door desktop publishing software zoals Aldus PageMaker die versies van Lorem Ipsum bevatten.\n\n#### Interesting videos\n\n---\n\n[![Angular9](https://i.ytimg.com/vi/CaqxXMWfadI/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCj-4MM7Xvgxgn7n-mcckzIMqf_gA)](https://www.youtube.com/watch?v=Sh37rIUL-d4)\n\n\n#### Links to presentations \n\n---\n\nhttps://www.ng-conf.org/ \n",
+    "iso8601Date": "2020-04-01T00:00:00+02:00",
+    "basename": "angular-9"
+  },
+  "blueprint": {
+    "title": "",
+    "description": "",
+    "author": "",
+    "conference": "",
+    "location": "",
+    "date": "mm-dd-yyyy",
+    "speaker": "",
+    "tags": "Angular,bootstrap,Model view controller",
+    "image": "http://placekitten.com/g/1920/1080",
+    "preview": "#### Description \nfill under the Description the description of the …",
+    "content": "\n\n#### Description \nfill under the Description the description of the presentations\n\n\n\n#### Interesting videos\nPlace your urls to the videos\n\n\n#### Links to presentations \nplace your urls to the presentations\n\n",
+    "iso8601Date": "Invalid date",
+    "basename": "blueprint"
+  },
+  "jool-strategy": {
+    "title": "JoolCon",
+    "description": "Joolcon is the latest and greatest Conference.",
+    "author": "Pascal van den Hoek",
+    "conference": "JoolCon",
+    "location": "Bodegraven",
+    "date": "01-14-2020",
+    "speaker": "David Kingma",
+    "tags": "Angular, PHP, Symphony",
+    "image": "http://placekitten.com/g/1280/720",
+    "preview": "#### Description\nThis is the description of the JoolCon Conference, …",
+    "content": "\n#### Description\nThis is the description of the JoolCon Conference, latest tech will be presented here.\n\n\n##### Date: 14-01-2020\n\n#### Interesting videos\n\n[![Scully](https://i.ytimg.com/vi/CaqxXMWfadI/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCj-4MM7Xvgxgn7n-mcckzIMqf_gA)](https://www.youtube.com/watch?v=Sh37rIUL-d4)\n\n#### Links to presentations \nhttps://jool.nl/home \n\n\n\n\n\n",
+    "iso8601Date": "2020-01-14T00:00:00+01:00",
+    "basename": "jool-strategy"
+  },
+  "unit-test-php": {
+    "title": "Unit testing in Php Symphony",
+    "description": "talk about unit testing in Php Symphony",
+    "author": "Pascal van den Hoek",
+    "conference": "SymphonyCon",
+    "location": "Amsterdam",
+    "date": "12-03-2020",
+    "speaker": "Mickey Mouse",
+    "tags": "Symphony,php,unit testing",
+    "image": "http://placekitten.com/g/1680/1050",
+    "preview": "#### Description \nTalk about the new way of unit testing in Php …",
+    "content": "\n\n#### Description \nTalk about the new way of unit testing in Php symphony\n\n\n##### Date: 12-03-2020\n\n#### Interesting videos\n[![Scully](https://i.ytimg.com/vi/CaqxXMWfadI/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCj-4MM7Xvgxgn7n-mcckzIMqf_gA)](https://www.youtube.com/watch?v=Sh37rIUL-d4)\n\n#### Links to presentations \nhttps://paris2020.symfony.com/ \n\n\n\n",
+    "iso8601Date": "2020-12-03T00:00:00+01:00",
+    "basename": "unit-test-php"
+  }
+}

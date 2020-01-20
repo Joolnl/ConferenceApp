@@ -18,7 +18,7 @@ export class PostDetailComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(_ => {
       this.route.reload();
-      
+
       const currentRoute = this.router.url;
       this.routeContent$ = this.route.available$.pipe(
         map(routes => routes.find(url => url.route === currentRoute)),
@@ -31,6 +31,6 @@ export class PostDetailComponent implements OnInit {
           return item;
         })
       );
-    })
+    });
   }
 }

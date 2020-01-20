@@ -1,11 +1,13 @@
 import { RouterModule, Routes } from '@angular/router';
+import { ConferencesOverviewComponent } from './components/conferences-overview/conferences-overview.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       {
-        path: ':id'
+        path: '',
+        component: ConferencesOverviewComponent
       }
     ]
   }
