@@ -2,8 +2,8 @@ import { SearchService } from './../../services/search.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, takeUntil, map, tap, switchMap } from 'rxjs/operators';
-import { Subject, Observable } from 'rxjs';
+import { debounceTime, takeUntil, tap, switchMap } from 'rxjs/operators';
+import { Subject, Observable, of } from 'rxjs';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -13,6 +13,7 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class MainComponent implements OnInit, OnDestroy {
   githubPath = environment.github;
+  showSearchResults = true;
 
   destroy$ = new Subject<boolean>();
   searchResults$: Observable<any>;
@@ -33,8 +34,11 @@ export class MainComponent implements OnInit, OnDestroy {
     this.searchResults$ = this.search.valueChanges.pipe(
       debounceTime(this.debounceTime),
       takeUntil(this.destroy$),
-      switchMap(searchvalue => this.postsService.getPosts(searchvalue)),
-      tap(_ => this.debounceTime = 400)
+      switchMap(searchvalue => (searchvalue ? this.postsService.getPosts(searchvalue) : of([]))),
+      tap(_ => {
+        this.showSearchResults = true;
+        this.debounceTime = 400;
+      })
     );
 
     this.searchService.searchObservable$

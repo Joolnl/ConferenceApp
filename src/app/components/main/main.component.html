@@ -7,9 +7,16 @@
           <input type="text" class="form-control search-input" formControlName="search"
             [placeholder]="'general.menu.search' | translate" />
           <ul *ngIf="searchResults$ | async as searchResults" class="search-results">
-            <li *ngFor="let result of searchResults" class="search-result" [routerLink]="['/posts', result.basename]">
-              {{ result.title }}
-            </li>
+            <ng-container *ngIf="searchResults.length && showSearchResults">
+              <li
+                *ngFor="let result of searchResults"
+                class="search-result"
+                [routerLink]="['/posts', result.basename]"
+                (click)="showSearchResults = false; searchForm.reset()"
+              >
+                {{ result.title }}
+              </li>
+            </ng-container>
           </ul>
         </form>
       </li>
