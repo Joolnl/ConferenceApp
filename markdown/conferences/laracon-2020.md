@@ -6,7 +6,7 @@ location: 'Amsterdam'
 date: '2020-02-10' 
 speaker: ''
 tags: 'Laravel, PHP, MVC, LaraCon'
-image: 'https://www.techyv.com/sites/default/users/cyrilsia01/top-10-best-features-of-laravel-php.jpg'
+image: 'https://dotdev.co/wp-content/uploads/2017/05/f856d-laravel-leader.png'
 ---
 
 #### Celebrate the Laravel Community 

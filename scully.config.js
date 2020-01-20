@@ -7,5 +7,11 @@ exports.config = {
         folder: "./markdown/posts"
       }
     },
+    '/conferences/:slug': {
+      type: 'contentFolder',
+      slug: {
+        folder: "./markdown/conferences"
+      }
+    },
   }
 };
