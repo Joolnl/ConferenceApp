@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, takeUntil, map, tap, switchMap } from 'rxjs/operators';
-import { Subject, Observable } from 'rxjs';
+import { debounceTime, takeUntil, switchMap, tap } from 'rxjs/operators';
+import { Subject, Observable, concat, merge, forkJoin } from 'rxjs';
 import { PostsService } from 'src/app/services/posts.service';
+import { ConferencesService } from 'src/app/services/conferences.service';
 
 @Component({
   selector: 'app-main',
@@ -15,7 +16,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   destroy$ = new Subject<boolean>();
 
-  searchResults$: Observable<any>;
+  searchResults$: Observable<SearchResult[]>;
 
   searchForm: FormGroup;
 
@@ -23,7 +24,7 @@ export class MainComponent implements OnInit, OnDestroy {
     return this.searchForm.get('search');
   }
 
-  constructor(private postsService: PostsService) {}
+  constructor(private postsService: PostsService, private confsService: ConferencesService) {}
 
   ngOnInit(): void {
     this.searchForm = this.createSearchForm();
@@ -31,7 +32,16 @@ export class MainComponent implements OnInit, OnDestroy {
     this.searchResults$ = this.search.valueChanges.pipe(
       debounceTime(400),
       takeUntil(this.destroy$),
-      switchMap(searchvalue => this.postsService.getPosts(searchvalue))
+      switchMap(searchvalue =>
+        forkJoin(
+          this.postsService.getPosts(searchvalue).then(posts => {
+            return { title: 'Posts', hits: posts, prefix: '/posts' };
+          }),
+          this.confsService.getConferences(searchvalue).then(confs => {
+            return { title: 'Confrences', hits: confs, prefix: '/conferences' };
+          })
+        )
+      )
     );
   }
 
@@ -45,4 +55,10 @@ export class MainComponent implements OnInit, OnDestroy {
       search: new FormControl()
     });
   }
+}
+
+export interface SearchResult {
+  title: string;
+  hits: any[];
+  prefix: string;
 }
