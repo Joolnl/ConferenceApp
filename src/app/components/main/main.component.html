@@ -11,7 +11,7 @@
             [placeholder]="'general.menu.search' | translate"
           />
           <ul *ngIf="searchResults$ | async as searchResults" class="search-results">
-            <li *ngFor="let result of searchResults" class="search-result" (click)="navigate(result.basename)">
+            <li *ngFor="let result of searchResults" class="search-result" [routerLink]="['/posts', result.basename]">
               {{ result.title }}
             </li>
           </ul>
