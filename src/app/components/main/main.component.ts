@@ -31,8 +31,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.searchResults$ = this.search.valueChanges.pipe(
       debounceTime(400),
       takeUntil(this.destroy$),
-      switchMap(searchvalue => this.postsService.getPosts(searchvalue)),
-      tap(bla => console.log(bla))
+      switchMap(searchvalue => this.postsService.getPosts(searchvalue))
     );
   }
 

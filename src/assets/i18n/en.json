@@ -8,6 +8,7 @@
     }
   },
   "posts": {
-    "read_more": "Read more"
+    "read_more": "Read more",
+    "author": "Author"
   }
 }

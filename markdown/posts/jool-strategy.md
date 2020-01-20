@@ -7,12 +7,9 @@ location: 'Bodegraven'
 date: '01-14-2020' 
 speaker: 'David Kingma'
 tags: 'Angular, PHP, Symphony'
+image: 'http://placekitten.com/g/1280/720'
 
 ---
-
-# JoolCon 
-### Joolcon is the latest and greatest Conference
-
 #### Description
 This is the description of the JoolCon Conference, latest tech will be presented here.
 

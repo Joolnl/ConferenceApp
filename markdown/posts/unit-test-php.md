@@ -7,11 +7,9 @@ location: 'Amsterdam'
 date: '12-03-2020' 
 speaker: 'Mickey Mouse'
 tags: 'Symphony,php,unit testing'
+image: 'http://placekitten.com/g/1680/1050'
 
 ---
-
-# Unit testing in Php Symphony 
-### talk about unit testing in Php Symphony
 
 #### Description 
 Talk about the new way of unit testing in Php symphony

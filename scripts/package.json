@@ -4,12 +4,15 @@
   "description": "scripts",
   "scripts": {
     "index": "m2j -c -o ./posts.json ../markdown/**/*.md",
-    "save-index": "node index.js"
+    "optimize-json": "node fix-json ./posts.json",
+    "save-index": "node index.js",
+    "index:optimize": "npm run index && npm run optimize-json"
   },
   "author": "Bas van der Lee",
   "dependencies": {
     "algoliasearch": "^3.35.1",
     "lodash.values": "^4.3.0",
-    "markdown-to-json": "github:joolnl/markdown-to-json#master"
+    "markdown-to-json": "^0.5.4",
+    "showdown": "^1.9.1"
   }
 }

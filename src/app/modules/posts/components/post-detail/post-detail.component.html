@@ -1,1 +1,27 @@
-<scully-content></scully-content>
+<ng-container *ngIf="routeContent$ | async as routeContent">
+    <div class="overall-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 content-box">
+                    <h1>{{routeContent.title}}</h1>
+                    <hr>
+                    <h4>{{routeContent.description}}</h4>
+                    <hr>
+                    <h6> {{routeContent.author}} - {{routeContent.date}}</h6>
+
+                    <img [src]="routeContent.image" />
+
+                    <scully-content></scully-content>
+                    <div class="tagbox" *ngIf="routeContent.tags">
+                        <span class="badge badge-pill badge-secondary tag" *ngFor="let tag of routeContent.tags">
+                            {{tag}}
+                        </span>
+                        <span class="badge badge-pill badge-light tag"><i class="fa fa-github"></i> Edit on GitHub</span>
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+    </div>
+</ng-container>
