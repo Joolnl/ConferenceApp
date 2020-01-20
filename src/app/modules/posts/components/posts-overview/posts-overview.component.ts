@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PostsService } from '../../../../services/posts.service';
 import { Observable } from 'rxjs';
 
@@ -10,9 +10,11 @@ import { Observable } from 'rxjs';
 export class PostsOverviewComponent implements OnInit {
   posts$: Observable<any>;
 
+  @Input() limit: number;
+
   constructor(private postsService: PostsService) {}
 
   ngOnInit() {
-    this.posts$ = this.postsService.getAllPosts();
+    this.posts$ = this.postsService.getAllPosts(this.limit);
   }
 }

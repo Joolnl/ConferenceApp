@@ -1,0 +1,28 @@
+.image-container {
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+
+  .card-image {
+    width: 100%;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.read-more-container {
+  height: 31px;
+}
+
+.read-more {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+}

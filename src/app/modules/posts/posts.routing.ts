@@ -1,6 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { PostsOverviewComponent } from './components/posts-overview/posts-overview.component';
-import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { DetailComponent } from 'src/app/components/detail/detail.component';
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
       },
       {
         path: ':slug',
-        component: PostDetailComponent
+        component: DetailComponent
       }
     ]
   }

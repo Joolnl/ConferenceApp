@@ -14,10 +14,12 @@
 
                     <scully-content></scully-content>
                     <div class="tagbox" *ngIf="routeContent.tags">
-                        <span class="badge badge-pill badge-secondary tag" *ngFor="let tag of routeContent.tags">
-                            {{tag}}
+                        <span class="badge badge-pill badge-secondary tag" (click)="searchTag(tag)"
+                            *ngFor="let tag of routeContent.tags">
+                            {{ tag }}
                         </span>
-                        <span class="badge badge-pill badge-light tag"><i class="fa fa-github"></i> Edit on GitHub</span>
+                        <span class="badge badge-pill badge-light tag"><i class="fa fa-github"></i> Edit on
+                            GitHub</span>
                     </div>
                 </div>
                 <div class="col-2"></div>

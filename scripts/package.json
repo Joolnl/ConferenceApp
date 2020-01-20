@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "scripts",
   "scripts": {
-    "index": "m2j -c -o ./posts.json ../markdown/**/*.md",
-    "optimize-json": "node fix-json ./posts.json",
+    "index": "m2j -c -o ./posts.json ../markdown/posts/*.md && m2j -c -o ./conferences.json ../markdown/conferences/*.md",
+    "optimize-json": "node fix-json ./posts.json && node fix-json ./conferences.json",
     "save-index": "node index.js",
     "index:optimize": "npm run index && npm run optimize-json"
   },

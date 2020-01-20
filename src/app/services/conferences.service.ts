@@ -6,15 +6,15 @@ import { from } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PostsService {
+export class ConferencesService {
   client = algoliaSearch(environment.algolia.appId, environment.algolia.searchApiKey);
   index: algoliaSearch.Index;
 
   constructor() {
-    this.index = this.client.initIndex('posts');
+    this.index = this.client.initIndex('conferences');
   }
 
-  getPosts(search: string = '', limit?: number) {
+  getConferences(search: string = '', limit?: number) {
     const params: { [key: string]: any } = { query: search };
 
     if (typeof limit !== 'undefined') {
@@ -24,7 +24,7 @@ export class PostsService {
     return this.index.search(params).then(results => results.hits);
   }
 
-  getAllPosts(limit?: number) {
-    return from(this.getPosts('', limit));
+  getAllConferences(limit?: number) {
+    return from(this.getConferences('', limit));
   }
 }

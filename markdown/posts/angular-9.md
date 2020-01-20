@@ -10,8 +10,6 @@ tags: 'angular,rxjs'
 image: 'https://pbs.twimg.com/profile_images/1196698060283187200/YBFemB3I_400x400.jpg'
 ---
 
-![NgConf](https://pbs.twimg.com/profile_images/1196698060283187200/YBFemB3I_400x400.jpg)
-
 #### Description 
 
 ---

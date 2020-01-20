@@ -1,0 +1,19 @@
+<div class="row row-cols-1 row-cols-md-3">
+    <div class="col mb-4" *ngFor="let post of items">
+        <div class="card h-100">
+            <div class="image-container card-img-top">
+                <img [src]="post.image" class="card-image">
+            </div>
+            <div class="card-body position-relative">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.description }}</p>
+                <div class="read-more-container">
+                    <a [routerLink]="[baseUrl, post.basename]" class="btn btn-dark btn-sm read-more">{{ 'posts.read_more' | translate }}</a>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                {{ 'posts.author' | translate }}: {{ post.author }}
+            </div>
+        </div>
+    </div>
+</div>
