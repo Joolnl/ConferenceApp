@@ -11,9 +11,9 @@
             [placeholder]="'general.menu.search' | translate"
           />
           <ng-container *ngIf="searchResults$ | async as searchResults">
-            <div class="search-results">
+            <div *ngIf="showSearchResults && searchForm.get('search').value" class="search-results">
               <ng-container *ngFor="let searchResult of searchResults">
-                <ng-container *ngIf="searchResult.hits.length && showSearchResults">
+                <ng-container *ngIf="searchResult.hits.length">
                   <h4 class="text-primary">{{ searchResult.title }}</h4>
                   <ul>
                     <li
