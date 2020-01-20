@@ -13,16 +13,13 @@ import { Observable, Subject } from 'rxjs';
 export class PostDetailComponent implements OnInit {
   routeContent$: Observable<ScullyRoute>;
 
-  testSubject = new Subject<number>();
-
   constructor(private route: ScullyRoutesService, private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-
     this.activatedRoute.params.subscribe(_ => {
       this.route.reload();
       
-      let currentRoute = this.router.url;
+      const currentRoute = this.router.url;
       this.routeContent$ = this.route.available$.pipe(
         map(routes => routes.find(url => url.route === currentRoute)),
         map(item => {
@@ -35,7 +32,5 @@ export class PostDetailComponent implements OnInit {
         })
       );
     })
-
-
   }
 }
