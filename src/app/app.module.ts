@@ -1,3 +1,5 @@
+import { ComponentShareModule } from './modules/component-share/component-share.module';
+import { SharedModule } from './modules/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -28,7 +30,8 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: createTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    ComponentShareModule
   ],
   providers: [],
   bootstrap: [AppComponent]
