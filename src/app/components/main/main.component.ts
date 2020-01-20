@@ -15,8 +15,9 @@ export class MainComponent implements OnInit, OnDestroy {
   githubPath = environment.github;
 
   destroy$ = new Subject<boolean>();
-
   searchResults$: Observable<any>;
+
+  debounceTime = 400;
 
   searchForm: FormGroup;
 
@@ -30,14 +31,18 @@ export class MainComponent implements OnInit, OnDestroy {
     this.searchForm = this.createSearchForm();
 
     this.searchResults$ = this.search.valueChanges.pipe(
-      debounceTime(400),
+      debounceTime(this.debounceTime),
       takeUntil(this.destroy$),
-      switchMap(searchvalue => this.postsService.getPosts(searchvalue))
+      switchMap(searchvalue => this.postsService.getPosts(searchvalue)),
+      tap(_ => this.debounceTime = 400)
     );
 
     this.searchService.searchObservable$
       .pipe(takeUntil(this.destroy$))
-      .subscribe(value => this.search.patchValue(value));
+      .subscribe(value => {
+        this.debounceTime = 400;
+        this.search.patchValue(value);
+      });
   }
 
   ngOnDestroy(): void {
