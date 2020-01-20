@@ -13,13 +13,14 @@
           <ng-container *ngIf="searchResults$ | async as searchResults">
             <div class="search-results">
               <ng-container *ngFor="let searchResult of searchResults">
-                <ng-container *ngIf="searchResult.hits.length">
+                <ng-container *ngIf="searchResult.hits.length && showSearchResults">
                   <h4 class="text-primary">{{ searchResult.title }}</h4>
                   <ul>
                     <li
                       *ngFor="let hit of searchResult.hits"
                       class="search-result"
                       [routerLink]="[searchResult.prefix, hit.basename]"
+                      (click)="showSearchResults = false; searchForm.reset()"
                     >
                       {{ hit.title }}
                     </li>

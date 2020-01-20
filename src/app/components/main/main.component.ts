@@ -1,8 +1,9 @@
+import { SearchService } from './../../services/search.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, takeUntil, switchMap, tap } from 'rxjs/operators';
-import { Subject, Observable, concat, merge, forkJoin } from 'rxjs';
+import { Subject, Observable, forkJoin, of } from 'rxjs';
 import { PostsService } from 'src/app/services/posts.service';
 import { ConferencesService } from 'src/app/services/conferences.service';
 
@@ -13,10 +14,13 @@ import { ConferencesService } from 'src/app/services/conferences.service';
 })
 export class MainComponent implements OnInit, OnDestroy {
   githubPath = environment.github;
+  showSearchResults = true;
 
   destroy$ = new Subject<boolean>();
 
   searchResults$: Observable<SearchResult[]>;
+
+  debounceTime = 400;
 
   searchForm: FormGroup;
 
@@ -24,25 +28,40 @@ export class MainComponent implements OnInit, OnDestroy {
     return this.searchForm.get('search');
   }
 
-  constructor(private postsService: PostsService, private confsService: ConferencesService) {}
+  constructor(
+    private postsService: PostsService,
+    private confsService: ConferencesService,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(): void {
     this.searchForm = this.createSearchForm();
 
     this.searchResults$ = this.search.valueChanges.pipe(
-      debounceTime(400),
+      debounceTime(this.debounceTime),
       takeUntil(this.destroy$),
       switchMap(searchvalue =>
-        forkJoin(
-          this.postsService.getPosts(searchvalue).then(posts => {
-            return { title: 'Posts', hits: posts, prefix: '/posts' };
-          }),
-          this.confsService.getConferences(searchvalue).then(confs => {
-            return { title: 'Confrences', hits: confs, prefix: '/conferences' };
-          })
-        )
-      )
+        searchvalue
+          ? forkJoin(
+              this.postsService.getPosts(searchvalue).then(posts => {
+                return { title: 'Posts', hits: posts, prefix: '/posts' };
+              }),
+              this.confsService.getConferences(searchvalue).then(confs => {
+                return { title: 'Confrences', hits: confs, prefix: '/conferences' };
+              })
+            )
+          : of([])
+      ),
+      tap(() => {
+        this.showSearchResults = true;
+        this.debounceTime = 400;
+      })
     );
+
+    this.searchService.searchObservable$.pipe(takeUntil(this.destroy$)).subscribe(value => {
+      this.debounceTime = 400;
+      this.search.patchValue(value);
+    });
   }
 
   ngOnDestroy(): void {

@@ -16,8 +16,5 @@ export class PostsOverviewComponent implements OnInit {
 
   ngOnInit() {
     this.posts$ = this.postsService.getAllPosts(this.limit);
-    this.posts$.subscribe(val => {
-      console.log(val);
-    });
   }
 }

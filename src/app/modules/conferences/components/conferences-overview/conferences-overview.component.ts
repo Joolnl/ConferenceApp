@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { ConferencesService } from './../../../../services/conferences.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-conferences-overview',
@@ -10,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class ConferencesOverviewComponent implements OnInit {
   conferences$: Observable<any>;
 
+  @Input() limit: number;
+
   constructor(private conferencesService: ConferencesService) {}
 
   ngOnInit() {
-    this.conferences$ = this.conferencesService.getAllConferences();
+    this.conferences$ = this.conferencesService.getAllConferences(this.limit);
   }
 }
