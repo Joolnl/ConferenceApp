@@ -1,3 +1,7 @@
+<ng-container *ngIf="testSubject | async">
+    
+
+
 <ng-container *ngIf="routeContent$ | async as routeContent">
     <div class="overall-container">
         <div class="container">
@@ -24,4 +28,7 @@
             </div>
         </div>
     </div>
+</ng-container>
+
+
 </ng-container>

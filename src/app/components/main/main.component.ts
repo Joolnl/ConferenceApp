@@ -4,6 +4,7 @@ import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, takeUntil, map, tap, switchMap } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 import { PostsService } from 'src/app/services/posts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -23,7 +24,7 @@ export class MainComponent implements OnInit, OnDestroy {
     return this.searchForm.get('search');
   }
 
-  constructor(private postsService: PostsService) {}
+  constructor(private postsService: PostsService, private router : Router) {}
 
   ngOnInit(): void {
     this.searchForm = this.createSearchForm();
@@ -39,6 +40,9 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.complete();
+  }
+  navigate(route: string){
+    this.router.navigateByUrl("/posts/" + route)
   }
 
   createSearchForm() {
