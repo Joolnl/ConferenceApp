@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   github: 'https://github.com/Joolnl/ConferenceApp',
+  github_markdown: 'https://github.com/Joolnl/ConferenceApp/tree/master/markdown',
   algolia: {
     appId: 'AE6N4RLBLC',
     searchApiKey: 'f6acf781c7b32aab634ebca63f65d088'
