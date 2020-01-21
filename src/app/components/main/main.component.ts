@@ -2,9 +2,10 @@ import { SearchService } from './../../services/search.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, takeUntil, tap, switchMap } from 'rxjs/operators';
-import { Subject, Observable, of } from 'rxjs';
+import { debounceTime, takeUntil, switchMap, tap } from 'rxjs/operators';
+import { Subject, Observable, forkJoin, of } from 'rxjs';
 import { PostsService } from 'src/app/services/posts.service';
+import { ConferencesService } from 'src/app/services/conferences.service';
 
 @Component({
   selector: 'app-main',
@@ -16,7 +17,8 @@ export class MainComponent implements OnInit, OnDestroy {
   showSearchResults = true;
 
   destroy$ = new Subject<boolean>();
-  searchResults$: Observable<any>;
+
+  searchResults$: Observable<SearchResult[]>;
 
   debounceTime = 400;
 
@@ -26,7 +28,11 @@ export class MainComponent implements OnInit, OnDestroy {
     return this.searchForm.get('search');
   }
 
-  constructor(private postsService: PostsService, private searchService: SearchService) {}
+  constructor(
+    private postsService: PostsService,
+    private confsService: ConferencesService,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(): void {
     this.searchForm = this.createSearchForm();
@@ -34,19 +40,28 @@ export class MainComponent implements OnInit, OnDestroy {
     this.searchResults$ = this.search.valueChanges.pipe(
       debounceTime(this.debounceTime),
       takeUntil(this.destroy$),
-      switchMap(searchvalue => (searchvalue ? this.postsService.getPosts(searchvalue) : of([]))),
-      tap(_ => {
+      switchMap(searchvalue =>
+        searchvalue
+          ? forkJoin(
+              this.postsService.getPosts(searchvalue).then(posts => {
+                return { title: 'Posts', hits: posts, prefix: '/posts' };
+              }),
+              this.confsService.getConferences(searchvalue).then(confs => {
+                return { title: 'Confrences', hits: confs, prefix: '/conferences' };
+              })
+            )
+          : of([])
+      ),
+      tap(() => {
         this.showSearchResults = true;
         this.debounceTime = 400;
       })
     );
 
-    this.searchService.searchObservable$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(value => {
-        this.debounceTime = 400;
-        this.search.patchValue(value);
-      });
+    this.searchService.searchObservable$.pipe(takeUntil(this.destroy$)).subscribe(value => {
+      this.debounceTime = 400;
+      this.search.patchValue(value);
+    });
   }
 
   ngOnDestroy(): void {
@@ -59,4 +74,10 @@ export class MainComponent implements OnInit, OnDestroy {
       search: new FormControl()
     });
   }
+}
+
+export interface SearchResult {
+  title: string;
+  hits: any[];
+  prefix: string;
 }
