@@ -17,10 +17,9 @@
 
                 <ng-container *ngIf="routeContent$ | async as routeContent">
                     <div class="tagbox" *ngIf="routeContent.tags">
-                        <span class="badge badge-pill badge-secondary tag" (click)="searchTag(tag)"
-                            *ngFor="let tag of routeContent.tags">
+                        <a class="badge badge-pill badge-secondary tag" *ngFor="let tag of routeContent.tags" [routerLink]="['/tags', safeUrl(tag)]">
                             {{ tag }}
-                        </span>
+                        </a>
                         <a [href]="editOnGitHubBaseUrl + router.url + '.md'" target="_blank"
                         ><span class="badge badge-pill badge-light tag"><i class="fa fa-github"></i> Edit on GitHub</span></a>
                     </div>

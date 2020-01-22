@@ -17,7 +17,7 @@ export class ConferencesService {
   getConferences(search: string = '', limit?: number) {
     const params: { [key: string]: any } = { query: search };
 
-    if (typeof limit !== 'undefined') {
+    if (typeof limit !== 'undefined' && limit > 0) {
       params.hitsPerPage = limit;
     }
 

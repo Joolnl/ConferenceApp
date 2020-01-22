@@ -9,6 +9,13 @@
   },
   "posts": {
     "read_more": "Read more",
-    "author": "Author"
+    "author": "Author",
+    "title": "Posts"
+  },
+  "conferences": {
+    "title": "Conferences"
+  },
+  "detail": {
+    "tag_title": "Results for tag '{{tag}}'"
   }
 }
