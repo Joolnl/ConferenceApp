@@ -4,7 +4,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ScullyRoute, ScullyRoutesService } from '@scullyio/ng-lib';
 import { Router, ActivatedRoute } from '@angular/router';
-import { map, tap, switchMap } from 'rxjs/operators';
+import { map, tap, switchMap, first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detail',
@@ -44,6 +44,7 @@ export class DetailComponent implements OnInit {
             }
             return item;
           }),
+          first(),
           tap(() => this.route.reload())
         )
       )
