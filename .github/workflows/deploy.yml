@@ -1,0 +1,58 @@
+name: Deploy Conferences
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.18.1]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: |
+          npm ci
+        env:
+          CI: true
+      - name: Angular build & scully build
+        run: |
+          npx ng build
+          npm run scully
+          zip --symlinks -qq -r working_dir.zip ./
+        env:
+          CI: true
+      - name: Create ZIP of working_dir
+        run: |
+          zip --symlinks -qq -r working_dir.zip ./
+        env:
+          CI: true
+      - name: Deploy to firebase
+        run: |
+          ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          CI: true
+      - name: Upload working directory artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: working_dir
+          path: working_dir.zip
+      - name: Update search index
+        run: |
+          cd scripts
+          npm ci
+          npm run index
+          npm run save-index ${{ secrets.algolia_app_id }} ${{ secrets.algolia_admin_token }} ./posts.json posts
+          npm run save-index ${{ secrets.algolia_app_id }} ${{ secrets.algolia_admin_token }} ./conferences.json conferences
+        env:
+          CI: true
