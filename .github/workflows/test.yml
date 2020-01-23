@@ -1,0 +1,51 @@
+name: Test Conferences
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+
+    strategy:
+      matrix:
+        node-version: [10.18.1]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: |
+          npm ci
+        env:
+          CI: true
+      - name: Angular build & scully build
+        run: |
+          npm run build
+        env:
+          CI: true
+      - name: Run linter
+        run: |
+          npm run lint
+        env:
+          CI: true
+      - name: Run tests
+        run: |
+          npm run ci:test
+        env:
+          CI: true
+      - name: Zip cypress videos
+        run: |
+          zip --symlinks -qq -r videos.zip ./cypress/videos
+        env:
+          CI: true
+      - name: Upload videos artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: videos
+          path: videos.zip

@@ -35,17 +35,17 @@ jobs:
           zip --symlinks -qq -r working_dir.zip ./
         env:
           CI: true
+      - name: Upload working directory artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: working_dir
+          path: working_dir.zip
       - name: Deploy to firebase
         run: |
           ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           CI: true
-      - name: Upload working directory artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: working_dir
-          path: working_dir.zip
       - name: Update search index
         run: |
           npm run save-index ${{ secrets.algolia_app_id }} ${{ secrets.algolia_admin_token }} ./posts.json posts
