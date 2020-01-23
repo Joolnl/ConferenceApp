@@ -2,26 +2,47 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.0-rc.8.
 
-## Development server
+## Building the application
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm install` to install all required node_modules. After this run `ng build` to distribute the angular application. After building the application run `npm run scully` to create a static site.
 
-## Code scaffolding
+## Running the application
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+After building the application serve the application with an http server for example [http-server](https://www.npmjs.com/package/http-server).
 
-## Build
+### When using http-server (package)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Use `http-server dist/static` to run the application.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Blueprint
 
-## Running end-to-end tests
+To add a new conference/post you can create a new markdown file inside `/markdown/confereces` and `/markdown/posts`.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Each markdown has to meet the following blueprint:
 
-## Further help
+```
+---
+title: '' (required)
+description: '' (required)
+author: '' (required)
+conference: '' (optional)
+location: '' (required for conferences, optional for posts)
+date: 'yyyy-dd-mm' (required)
+speaker: '' (required for posts, optional for conferences)
+tags: 'tag1, tag2, tag3' (required)
+image: 'http://placekitten.com/g/1920/1080' (required)
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#### Description 
+Tell something about this post/conference
+
+#### Interesting videos
+Place your urls to the videos
+
+#### Links to presentations 
+Place your urls to the presentations
+```
+
+Meta data and Description are required in each markdown file.
+The description defined in the meta data is used as an introduction text on the overview page.
