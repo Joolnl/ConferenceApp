@@ -3,5 +3,7 @@ node_modules
 .vscode/
 dist/
 src/assets/scully-routes.json
+scripts/posts.json
+scripts/conferences.json
 
 .firebase/
