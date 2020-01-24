@@ -12,7 +12,7 @@
     "scully:serve": "scully serve",
     "index": "m2j -c -o ./scripts/posts.json ./markdown/posts/*.md && m2j -c -o ./scripts/conferences.json ./markdown/conferences/*.md",
     "optimize-json": "node fix-json ./scripts/posts.json && node fix-json ./scripts/conferences.json",
-    "save-index": "node index.js",
+    "save-index": "node ./scripts/index.js",
     "index:optimize": "npm run index && npm run optimize-json"
   },
   "private": true,
@@ -35,6 +35,7 @@
     "font-awesome": "^4.7.0",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
+    "url-slug": "^2.2.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

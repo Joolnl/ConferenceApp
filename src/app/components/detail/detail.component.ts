@@ -1,10 +1,10 @@
-import { environment } from 'src/environments/environment';
-import { SearchService } from './../../services/search.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { ScullyRoute, ScullyRoutesService } from '@scullyio/ng-lib';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map, tap, switchMap, first } from 'rxjs/operators';
+import * as urlSlug from 'url-slug';
 
 @Component({
   selector: 'app-detail',
@@ -18,12 +18,7 @@ export class DetailComponent implements OnInit {
 
   editOnGitHubBaseUrl = environment.github_markdown;
 
-  constructor(
-    private route: ScullyRoutesService,
-    private activatedRoute: ActivatedRoute,
-    private searchService: SearchService,
-    public router: Router
-  ) {}
+  constructor(private route: ScullyRoutesService, public router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.routeContent$ = this.activatedRoute.params.pipe(
@@ -51,8 +46,7 @@ export class DetailComponent implements OnInit {
     );
   }
 
-  searchTag(value: string) {
-    this.searchService.search(value);
-    window.scroll(0, 0);
+  safeUrl(value: string): string {
+    return urlSlug(value);
   }
 }

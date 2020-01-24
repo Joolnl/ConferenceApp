@@ -17,14 +17,17 @@ export class PostsService {
   getPosts(search: string = '', limit?: number) {
     const params: { [key: string]: any } = { query: search };
 
-    if (typeof limit !== 'undefined') {
+    if (typeof limit !== 'undefined' && limit > 0) {
       params.hitsPerPage = limit;
     }
-
-    return this.index.search(params).then(results => results.hits);
+    return this.index.search(params).then((results: { [key: string]: any }) => results.hits);
   }
 
   getAllPosts(limit?: number) {
     return from(this.getPosts('', limit));
+  }
+
+  getPostsByTag(tag: string) {
+    return this.index.search({ query: tag, restrictSearchableAttributes: ['tags'] }).then(results => results.hits);
   }
 }

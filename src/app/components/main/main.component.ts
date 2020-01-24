@@ -1,4 +1,3 @@
-import { SearchService } from './../../services/search.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
@@ -28,11 +27,7 @@ export class MainComponent implements OnInit, OnDestroy {
     return this.searchForm.get('search');
   }
 
-  constructor(
-    private postsService: PostsService,
-    private confsService: ConferencesService,
-    private searchService: SearchService
-  ) {}
+  constructor(private postsService: PostsService, private confsService: ConferencesService) {}
 
   ngOnInit(): void {
     this.searchForm = this.createSearchForm();
@@ -54,14 +49,8 @@ export class MainComponent implements OnInit, OnDestroy {
       ),
       tap(() => {
         this.showSearchResults = true;
-        this.debounceTime = 400;
       })
     );
-
-    this.searchService.searchObservable$.pipe(takeUntil(this.destroy$)).subscribe(value => {
-      this.debounceTime = 400;
-      this.search.patchValue(value);
-    });
   }
 
   ngOnDestroy(): void {
