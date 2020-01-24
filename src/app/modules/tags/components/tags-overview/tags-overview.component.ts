@@ -32,8 +32,8 @@ export class TagsOverviewComponent implements OnInit, OnDestroy {
           const { tag } = params;
           this.tag = this.revertSlug(tag);
 
-          this.posts$ = from(this.postsService.getPosts(tag, 0, ['tags']));
-          this.conferences$ = from(this.conferencesService.getConferences(tag, 0, ['tags']));
+          this.posts$ = from(this.postsService.getPostsByTag(tag));
+          this.conferences$ = from(this.conferencesService.getConferencesByTag(tag));
         })
       )
       .subscribe();

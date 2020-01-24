@@ -26,4 +26,11 @@ export class PostsService {
   getAllPosts(limit?: number) {
     return from(this.getPosts('', limit));
   }
+
+  getPostsByTag(tag: string) {
+    const tagIndex = this.client.initIndex('posts');
+    tagIndex.setSettings({ searchableAttributes: ['tags'] });
+
+    return tagIndex.search({ query: tag }).then(results => results.hits);
+  }
 }

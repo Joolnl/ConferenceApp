@@ -27,4 +27,11 @@ export class ConferencesService {
   getAllConferences(limit?: number) {
     return from(this.getConferences('', limit));
   }
+
+  getConferencesByTag(tag: string) {
+    const tagIndex = this.client.initIndex('conferences');
+    tagIndex.setSettings({ searchableAttributes: ['tags'] });
+
+    return tagIndex.search({ query: tag }).then(results => results.hits);
+  }
 }
