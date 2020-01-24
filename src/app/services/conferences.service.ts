@@ -29,9 +29,6 @@ export class ConferencesService {
   }
 
   getConferencesByTag(tag: string) {
-    const tagIndex = this.client.initIndex('conferences');
-    tagIndex.setSettings({ searchableAttributes: ['tags'] });
-
-    return tagIndex.search({ query: tag }).then(results => results.hits);
+    return this.index.search({ query: tag, restrictSearchableAttributes: ['tags'] }).then(results => results.hits);
   }
 }

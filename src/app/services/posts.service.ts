@@ -28,9 +28,6 @@ export class PostsService {
   }
 
   getPostsByTag(tag: string) {
-    const tagIndex = this.client.initIndex('posts');
-    tagIndex.setSettings({ searchableAttributes: ['tags'] });
-
-    return tagIndex.search({ query: tag }).then(results => results.hits);
+    return this.index.search({ query: tag, restrictSearchableAttributes: ['tags'] }).then(results => results.hits);
   }
 }
