@@ -12,7 +12,7 @@
     "scully:serve": "scully serve",
     "index": "m2j -c -o ./scripts/posts.json ./markdown/posts/*.md && m2j -c -o ./scripts/conferences.json ./markdown/conferences/*.md",
     "optimize-json": "node fix-json ./scripts/posts.json && node fix-json ./scripts/conferences.json",
-    "save-index": "node index.js",
+    "save-index": "node ./scripts/index.js",
     "index:optimize": "npm run index && npm run optimize-json"
   },
   "private": true,
