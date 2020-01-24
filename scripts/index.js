@@ -23,24 +23,40 @@ if (!index_name) {
 
 const client = algolia(appId, token);
 
-client.deleteIndex(index_name, (err, res) => {
+client.deleteIndex(`${index_name}_tmp`, (err, res) => {
   if (err) {
     throw new Error(err);
   } else {
-    console.log('old index deleted...');
+    console.log("removed old tmp index...");
 
     const index = client.initIndex(index_name);
-    const posts = require(file);
+    const tmpIndex = client.initIndex(`${index_name}_tmp`);
 
-    if (posts) {
-      index
-        .addObjects(_values(posts))
-        .then(() => console.log('new index added...'))
-        .catch(err => {
-          throw new Error(err);
-        });
-    } else {
-      throw new Error('posts.json not found or empty');
-    }
+    client
+      .copyIndex(index.indexName, tmpIndex.indexName, [
+        'settings',
+        'synonyms',
+        'rules'
+      ])
+      .then(() => {
+        const posts = require(file);
+
+        if (posts) {
+          tmpIndex
+            .addObjects(_values(posts))
+            .then(() => console.log('new index added...'))
+            .catch(err => {
+              throw new Error(err);
+            });
+        } else {
+          throw new Error('posts.json not found or empty');
+        }
+      })
+      .then(() =>
+        client.moveIndex(tmpIndex.indexName, index.indexName)
+      )
+      .catch(err => {
+        console.error(err);
+      });
   }
 });
