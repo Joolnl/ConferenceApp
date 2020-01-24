@@ -18,7 +18,7 @@ export class DetailComponent implements OnInit {
 
   editOnGitHubBaseUrl = environment.github_markdown;
 
-  constructor(private route: ScullyRoutesService, private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private route: ScullyRoutesService, public router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.routeContent$ = this.activatedRoute.params.pipe(
