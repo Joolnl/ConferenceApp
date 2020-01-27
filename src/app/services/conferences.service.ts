@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as algoliaSearch from 'algoliasearch';
 import { environment } from 'src/environments/environment';
 import { from } from 'rxjs';
+import { sortAlgoliaByDate } from './../helpers/sort';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class ConferencesService {
       params.hitsPerPage = limit;
     }
 
-    return this.index.search(params).then(results => results.hits);
+    return this.index.search(params).then(results => results.hits.sort(sortAlgoliaByDate));
   }
 
   getAllConferences(limit?: number) {
