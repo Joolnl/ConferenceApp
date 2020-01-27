@@ -8,6 +8,14 @@ const token = process.argv.slice(2)[1];
 const file = process.argv.slice(2)[2];
 const index_name = process.argv.slice(2)[3];
 
+const searchableAttributes = [
+  'title',
+  'description',
+  'content',
+  'author',
+  'tags'
+];
+
 if (!token) {
   throw new Error('Please enter algolia api token as parameter');
 }
@@ -39,7 +47,10 @@ client.deleteIndex(`${index_name}_tmp`, (err, res) => {
         .addObjects(_values(items))
         .then(() => {
           console.log('new index added...');
-          client.moveIndex(tmpIndex.indexName, index.indexName).then(() => console.log('old index replaced...'));
+          client.moveIndex(tmpIndex.indexName, index.indexName).then(() => console.log('old index replaced...')).then(() => {
+            /* Moving index content also overwrites the searchable attributes, so lets set these again */
+            index.setSettings({ searchableAttributes });
+          });
         })
         .catch(err => {
           throw new Error(err);
