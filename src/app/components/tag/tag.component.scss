@@ -1,0 +1,23 @@
+
+:host {
+    background: #23272b;
+    color: white;
+    
+    display: inline-block;
+    font-weight: 400;
+
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+
+    .tag-img {
+        margin-right: .25rem;
+        width: 1.5rem;
+        margin-top: .25rem;
+        margin-bottom: -0.75rem;
+    }
+
+    margin-right: .25rem;
+    cursor: pointer;
+}
