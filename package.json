@@ -4,7 +4,6 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -13,7 +12,8 @@
     "index": "m2j -c -o ./scripts/posts.json ./markdown/posts/*.md && m2j -c -o ./scripts/conferences.json ./markdown/conferences/*.md",
     "optimize-json": "node fix-json ./scripts/posts.json && node fix-json ./scripts/conferences.json",
     "save-index": "node ./scripts/index.js",
-    "index:optimize": "npm run index && npm run optimize-json"
+    "index:optimize": "npm run index && npm run optimize-json",
+    "build": "npm run index && node ./scripts/count-tags.js && npx ng build && npx scully"
   },
   "private": true,
   "dependencies": {
