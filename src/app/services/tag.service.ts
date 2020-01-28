@@ -13,7 +13,7 @@ export class TagService {
 
   getPopularTags(limit?: number): Observable<TagItems> {
     return this.http.get<TagItems>(`/assets/tags.json`).pipe(
-      map(tags => (typeof limit !== 'undefined') ? tags.slice(0, limit) : tags)
+      map(tags => limit ? tags.slice(0, limit) : tags)
     );
   }
 
