@@ -3,7 +3,7 @@ name: Deploy Conferences
 on:
   push:
     branches:
-      - master
+      - gezeik
 
 jobs:
   build:
