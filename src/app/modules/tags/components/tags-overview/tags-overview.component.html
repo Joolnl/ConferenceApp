@@ -1,11 +1,11 @@
-<h1>{{ 'detail.tag_title' | translate }} '<tag [tag]='tag' [plain]='true'></tag>'</h1>
+<h1>{{ 'detail.tag_title' | translate }} ''</h1>
 
 <ng-container *ngIf="posts$ | async as posts">
-    <h2 *ngIf="posts.length > 0">{{ 'posts.title' | translate }}</h2>
-    <app-overview [items]="posts" [baseUrl]="'/posts'"></app-overview>
+  <h2 *ngIf="posts.length > 0">{{ 'posts.title' | translate }}</h2>
+  <app-overview [items]="posts" [baseUrl]="'/posts'"></app-overview>
 </ng-container>
 
 <ng-container *ngIf="conferences$ | async as conferences">
-    <h2 *ngIf="conferences.length > 0">{{ 'conferences.title' | translate }}</h2>
-    <app-overview [items]="conferences" [baseUrl]="'/conferences'"></app-overview>
+  <h2 *ngIf="conferences.length > 0">{{ 'conferences.title' | translate }}</h2>
+  <app-overview [items]="conferences" [baseUrl]="'/conferences'"></app-overview>
 </ng-container>
