@@ -3,6 +3,7 @@ node_modules
 .vscode/
 dist/
 src/assets/scully-routes.json
+src/assets/tags.json
 scripts/posts.json
 scripts/conferences.json
 
