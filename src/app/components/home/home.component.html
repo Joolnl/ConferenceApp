@@ -2,10 +2,6 @@
   <div class="col-12">
     <h1>{{ 'home.popular_tags' | translate }}</h1>
 
-    <div class="tagbox">
-      <tag *ngFor="let tag of popularTags$ | async" [tag]="tag.name"></tag>
-    </div>
-
     <app-posts-overview [limit]="6"></app-posts-overview>
     <app-conferences-overview [limit]="6"></app-conferences-overview>
   </div>
