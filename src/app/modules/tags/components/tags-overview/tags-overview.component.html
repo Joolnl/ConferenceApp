@@ -1,4 +1,4 @@
-<h1>{{ 'detail.tag_title' | translate:{tag:tag} }}</h1>
+<h1>{{ 'detail.tag_title' | translate }} '<tag [tag]='tag' [plain]='true'></tag>'</h1>
 
 <ng-container *ngIf="posts$ | async as posts">
     <h2 *ngIf="posts.length > 0">{{ 'posts.title' | translate }}</h2>
