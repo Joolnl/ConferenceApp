@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit, HostBinding } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import * as urlSlug from 'url-slug';
@@ -18,6 +18,11 @@ export class TagComponent implements OnInit {
   image$: Observable<string>;
 
   @Input() tag: string;
+  @Input() plain = false;
+
+  @HostBinding('class.plain') get plainClass() {
+    return this.plain;
+  }
 
   @HostListener('click') onClick() {
     this.router.navigate(['/tags', urlSlug(this.tag)]);

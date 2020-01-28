@@ -1,21 +1,10 @@
 <div class="row">
   <div class="col-12">
-    <h1>Most popular topics</h1>
+    <h1>{{ 'home.popular_tags' | translate }}</h1>
 
     <div class="tagbox">
-      <tag tag="angular"></tag>
-      <tag tag="php"></tag>
-      <tag tag="symfony"></tag>
-      <tag tag="react"></tag>
-      <tag tag="redux"></tag>
-      <tag tag="laravel"></tag>
-      <tag tag="vuejs"></tag>
-      <tag tag="html"></tag>
-      <tag tag="css"></tag>
-      <tag tag="nodejs"></tag>
+      <tag *ngFor="let tag of popularTags$ | async" [tag]="tag.name"></tag>
     </div>
-
-    <br /><br />
 
     <app-posts-overview [limit]="6"></app-posts-overview>
     <app-conferences-overview [limit]="6"></app-conferences-overview>

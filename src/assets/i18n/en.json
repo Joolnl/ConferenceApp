@@ -16,6 +16,9 @@
     "title": "Conferences"
   },
   "detail": {
-    "tag_title": "Results for tag '{{tag}}'"
+    "tag_title": "Results for tag"
+  },
+  "home": {
+    "popular_tags": "Most popular topics"
   }
 }
