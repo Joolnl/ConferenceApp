@@ -13,7 +13,7 @@
     "optimize-json": "node fix-json ./scripts/posts.json && node fix-json ./scripts/conferences.json",
     "save-index": "node ./scripts/index.js",
     "index:optimize": "npm run index && npm run optimize-json",
-    "build": "npm run index && node ./scripts/count-tags.js && npx ng build && npx scully"
+    "build": "npm run index && node ./scripts/count-tags.js && npx ng build && sleep 1 && npx scully"
   },
   "private": true,
   "dependencies": {
