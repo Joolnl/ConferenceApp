@@ -8,6 +8,18 @@
     cursor: pointer;
     margin-right: 0.25rem;
     margin-bottom: 0.25rem;
+
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+    &:hover {    
+      color: #fff;
+      background-color: #23272b;
+      border-color: #1d2124;
+    }
+
+    img {
+      margin-right: 0.25rem;
+    }
 }
 
 :host {
@@ -17,7 +29,6 @@
   line-height: 1.5;
 
   img {
-    margin-right: 0.25rem;
     width: 1.5rem;
     margin-top: 0.25rem;
     margin-bottom: -0.75rem;

@@ -37,14 +37,14 @@ export class MainComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$),
       switchMap(searchvalue =>
         searchvalue
-          ? forkJoin(
+          ? forkJoin([
               this.postsService.getPosts(searchvalue).then(posts => {
                 return { title: 'Posts', hits: posts, prefix: '/posts' };
               }),
               this.confsService.getConferences(searchvalue).then(confs => {
                 return { title: 'Confrences', hits: confs, prefix: '/conferences' };
               })
-            )
+            ])
           : of([])
       ),
       tap(() => {

@@ -1,5 +1,3 @@
-<ng-container *ngIf="image$ | async as image">
-  <img src="{{ image }}" />
-</ng-container>
+<img [src]="image$ | async" />
 
 {{ tag }}

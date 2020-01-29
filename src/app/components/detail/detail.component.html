@@ -16,9 +16,11 @@
         <scully-content></scully-content>
 
         <ng-container *ngIf="routeContent$ | async as routeContent">
-          <a [href]="editOnGitHubBaseUrl + router.url + '.md'" target="_blank"
-            ><span class="badge badge-pill badge-light tag github"><i class="fa fa-github"></i> Edit on GitHub</span></a
-          >
+          <div class="tagbox" *ngIf="routeContent.tags">
+            <tag *ngFor="let tag of routeContent.tags" [tag]="tag"></tag>
+          </div>
+          <a [href]="editOnGitHubBaseUrl + router.url + '.md'" target="_blank"><span
+              class="badge badge-pill badge-light tag github"><i class="fa fa-github"></i> Edit on GitHub</span></a>
         </ng-container>
       </div>
       <div class="col-2"></div>

@@ -5,20 +5,27 @@
     },
     "not_found": {
       "title": "The page you requested was not found."
+    },
+    "search": {
+      "no_result": "No results..."
     }
   },
   "posts": {
     "read_more": "Read more",
     "author": "Author",
-    "title": "Posts"
+    "title": "Posts",
+    "page_title": "Latest posts"
   },
   "conferences": {
-    "title": "Conferences"
+    "title": "Conferences",
+    "page_title": "Latest conferences"
   },
   "detail": {
     "tag_title": "Results for tag"
   },
   "home": {
-    "popular_tags": "Most popular topics"
+    "title": "Welcome to ConferenceApp",
+    "intro": "Read the latest and greatest conference related posts!",
+    "intro2": "Some popular subjects are listed below."
   }
 }
