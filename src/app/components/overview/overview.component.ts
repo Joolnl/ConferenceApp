@@ -11,6 +11,8 @@ export class OverviewComponent implements OnInit {
   @Input() items: Observable<MarkdownResponse[]>;
   @Input() baseUrl: string;
 
+  @Input() urlAttribute = 'route';
+
   constructor() {}
 
   ngOnInit() {}
