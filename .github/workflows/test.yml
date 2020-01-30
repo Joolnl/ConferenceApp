@@ -36,6 +36,7 @@ jobs:
           CI: true
       - name: Run tests
         run: |
+          npm run test-content
           npm run ci:test
         env:
           CI: true
