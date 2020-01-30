@@ -1,3 +1,4 @@
+import { ScullyRoute } from '@scullyio/ng-lib';
 import { AppRoutesService } from './../../../../services/app-routes.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./posts-overview.component.scss']
 })
 export class PostsOverviewComponent implements OnInit {
-  posts$: Observable<any>;
+  posts$: Observable<ScullyRoute[]>;
 
   @Input() limit: number;
 

@@ -11,8 +11,7 @@ export function sortByDate(a: DateType, b: DateType): SortResponse {
 }
 
 interface DateObject {
-    date: string;
-    [key: string]: any;
+    date: string; // yyyy-mm-dd
 }
 
 type DateType = DateObject | ScullyRoute;

@@ -5,6 +5,7 @@ import { Subject, Observable, from } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as urlSlug from 'url-slug';
+import { Conferences, Posts } from 'src/app/contracts/markdown';
 
 @Component({
   selector: 'app-tags-overview',
@@ -13,8 +14,8 @@ import * as urlSlug from 'url-slug';
 })
 export class TagsOverviewComponent implements OnInit, OnDestroy {
   destroy$ = new Subject<boolean>();
-  posts$: Observable<any>;
-  conferences$: Observable<any>;
+  posts$: Observable<Posts[]>;
+  conferences$: Observable<Conferences[]>;
 
   tag = '';
 
