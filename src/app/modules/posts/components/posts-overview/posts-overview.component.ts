@@ -1,5 +1,5 @@
+import { AppRoutesService } from './../../../../services/app-routes.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { PostsService } from '../../../../services/posts.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,9 +13,9 @@ export class PostsOverviewComponent implements OnInit {
   @Input() limit: number;
   @Input() heading = 1;
 
-  constructor(private postsService: PostsService) {}
+  constructor(private routes: AppRoutesService) {}
 
   ngOnInit() {
-    this.posts$ = this.postsService.getAllPosts(this.limit);
+    this.posts$ = this.routes.getRoutes('posts', this.limit);
   }
 }
