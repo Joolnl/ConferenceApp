@@ -11,7 +11,6 @@ export class PostsOverviewComponent implements OnInit {
   posts$: Observable<any>;
 
   @Input() limit: number;
-  @Input() heading = 1;
 
   constructor(private routes: AppRoutesService) {}
 

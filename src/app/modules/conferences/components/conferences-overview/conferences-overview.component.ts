@@ -11,7 +11,6 @@ export class ConferencesOverviewComponent implements OnInit {
   conferences$: Observable<any>;
 
   @Input() limit: number;
-  @Input() heading = 1;
 
   constructor(private routes: AppRoutesService) {}
 

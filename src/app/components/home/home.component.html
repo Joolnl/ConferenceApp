@@ -12,7 +12,10 @@
 
 <div class="row">
   <div class="col-12">
-    <app-posts-overview [limit]="6" [heading]="2"></app-posts-overview>
-    <app-conferences-overview [limit]="6" [heading]="2"></app-conferences-overview>
+    <h2>{{ 'posts.page_title' | translate }}</h2>
+    <app-overview [items]="posts$ | async" baseUrl="/posts"></app-overview>
+
+    <h2>{{ 'conferences.page_title' | translate }}</h2>
+    <app-overview [items]="conferences$ | async" baseUrl="/conferences"></app-overview>
   </div>
 </div>

@@ -8,15 +8,13 @@ import { CommonModule } from '@angular/common';
 import { ConferencesOverviewComponent } from '../conferences/components/conferences-overview/conferences-overview.component';
 import { DetailComponent } from 'src/app/components/detail/detail.component';
 import { ComponentsModule } from '@scullyio/ng-lib';
-import { HeadingComponent } from 'src/app/components/heading/heading.component';
 
 const COMPONENTS = [
   TagComponent,
   DetailComponent,
   OverviewComponent,
   ConferencesOverviewComponent,
-  PostsOverviewComponent,
-  HeadingComponent
+  PostsOverviewComponent
 ];
 
 @NgModule({
