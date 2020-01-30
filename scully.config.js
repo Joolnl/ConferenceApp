@@ -12,6 +12,7 @@ exports.config = {
       slug: {
         folder: "./markdown/conferences"
       }
-    },
-  }
+    }
+  },
+  hostName: '0.0.0.0'
 };
