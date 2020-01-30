@@ -1,12 +1,21 @@
 <div class="row">
-  <div class="col-12">
-    <h1>{{ 'home.popular_tags' | translate }}</h1>
+  <div class="col-12 intro">
+    <h1>{{ 'home.title' | translate }}</h1>
+    <p>{{ 'home.intro' | translate }}</p>
+    <p>{{ 'home.intro2' | translate }}</p>
 
     <div class="tagbox">
       <tag *ngFor="let tag of popularTags$ | async" [tag]="tag.name"></tag>
     </div>
+  </div>
+</div>
 
-    <app-posts-overview [limit]="6"></app-posts-overview>
-    <app-conferences-overview [limit]="6"></app-conferences-overview>
+<div class="row">
+  <div class="col-12">
+    <h2>{{ 'posts.page_title' | translate }}</h2>
+    <app-overview [items]="posts$ | async" baseUrl="/posts"></app-overview>
+
+    <h2>{{ 'conferences.page_title' | translate }}</h2>
+    <app-overview [items]="conferences$ | async" baseUrl="/conferences"></app-overview>
   </div>
 </div>

@@ -1,5 +1,6 @@
+import { ScullyRoute } from '@scullyio/ng-lib';
+import { AppRoutesService } from './../../../../services/app-routes.service';
 import { Observable } from 'rxjs';
-import { ConferencesService } from './../../../../services/conferences.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -8,13 +9,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./conferences-overview.component.scss']
 })
 export class ConferencesOverviewComponent implements OnInit {
-  conferences$: Observable<any>;
+  conferences$: Observable<ScullyRoute[]>;
 
   @Input() limit: number;
 
-  constructor(private conferencesService: ConferencesService) {}
+  constructor(private routes: AppRoutesService) {}
 
   ngOnInit() {
-    this.conferences$ = this.conferencesService.getAllConferences(this.limit);
+    this.conferences$ = this.routes.getRoutes('conferences', this.limit);
   }
 }

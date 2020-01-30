@@ -4,27 +4,22 @@
     <ul class="navbar-nav">
       <li class="nav-item search">
         <form [formGroup]="searchForm" class="search-form">
-          <input
-            type="text"
-            class="form-control search-input"
-            formControlName="search"
-            [placeholder]="'general.menu.search' | translate"
-          />
+          <input type="text" class="form-control search-input" formControlName="search"
+            [placeholder]="'general.menu.search' | translate" />
           <ng-container *ngIf="searchResults$ | async as searchResults">
-            <div *ngIf="showSearchResults && searchForm.get('search').value" class="search-results">
-              <ng-container *ngFor="let searchResult of searchResults">
-                <ng-container *ngIf="searchResult.hits.length">
-                  <h4 class="text-primary">{{ searchResult.title }}</h4>
-                  <ul>
-                    <li
-                      *ngFor="let hit of searchResult.hits"
-                      class="search-result"
-                      [routerLink]="[searchResult.prefix, hit.basename]"
-                      (click)="showSearchResults = false; searchForm.reset()"
-                    >
-                      {{ hit.title }}
-                    </li>
-                  </ul>
+            <div *ngIf="showSearchResults && search.value" class="search-results">
+              <ng-container *ngIf="searchResults[0].hits.length > 0 || searchResults[1].hits.length > 0; else noResults">
+                <ng-container *ngFor="let searchResult of searchResults">
+                  <ng-container *ngIf="searchResult.hits.length">
+                    <h4 class="text-primary">{{ searchResult.title }}</h4>
+                    <ul>
+                      <li *ngFor="let hit of searchResult.hits" class="search-result"
+                        [routerLink]="[searchResult.prefix, hit.basename]"
+                        (click)="showSearchResults = false; searchForm.reset()">
+                        {{ hit.title }}
+                      </li>
+                    </ul>
+                  </ng-container>
                 </ng-container>
               </ng-container>
             </div>
@@ -36,9 +31,13 @@
     </ul>
   </div>
 
-  <a class="btn btn-primary" [href]="githubPath" target="_blank"> <i class="fa fa-github"></i> GitHub </a>
+  <a class="btn btn-primary btn-github" [href]="githubPath" target="_blank"> <i class="fa fa-github"></i> GitHub </a>
 </nav>
 
 <div class="container content">
   <router-outlet></router-outlet>
 </div>
+
+<ng-template #noResults>
+  <span class="no-results">{{ 'general.search.no_result' | translate }}</span>
+</ng-template>

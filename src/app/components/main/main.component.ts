@@ -5,6 +5,7 @@ import { debounceTime, takeUntil, switchMap, tap } from 'rxjs/operators';
 import { Subject, Observable, forkJoin, of } from 'rxjs';
 import { PostsService } from 'src/app/services/posts.service';
 import { ConferencesService } from 'src/app/services/conferences.service';
+import { Conferences, Posts } from 'src/app/contracts/markdown';
 
 @Component({
   selector: 'app-main',
@@ -37,14 +38,14 @@ export class MainComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$),
       switchMap(searchvalue =>
         searchvalue
-          ? forkJoin(
+          ? forkJoin([
               this.postsService.getPosts(searchvalue).then(posts => {
                 return { title: 'Posts', hits: posts, prefix: '/posts' };
               }),
               this.confsService.getConferences(searchvalue).then(confs => {
-                return { title: 'Confrences', hits: confs, prefix: '/conferences' };
+                return { title: 'Conferences', hits: confs, prefix: '/conferences' };
               })
-            )
+            ])
           : of([])
       ),
       tap(() => {
@@ -67,6 +68,6 @@ export class MainComponent implements OnInit, OnDestroy {
 
 export interface SearchResult {
   title: string;
-  hits: any[];
+  hits: Posts[] | Conferences[];
   prefix: string;
 }
