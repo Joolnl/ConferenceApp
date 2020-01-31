@@ -26,10 +26,7 @@ jobs:
           CI: true
       - name: Angular build & scully build
         run: |
-          npm run index
-          npm run count-tags
-          npx ng build
-          npm run scully
+          npm run build
         env:
           CI: true
       - name: Run linter
@@ -37,9 +34,13 @@ jobs:
           npm run lint
         env:
           CI: true
-      - name: Run tests
+      - name: Run content test
         run: |
           npm run test-content
+        env:
+          CI: true
+      - name: Run cypress
+        run: |
           npm run ci:test
         env:
           CI: true
