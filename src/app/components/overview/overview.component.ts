@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit, Input } from '@angular/core';
-import { MarkdownResponse } from 'src/app/contracts/markdown';
+import { Markdown } from 'src/app/contracts/markdown';
 
 @Component({
   selector: 'app-overview',
@@ -8,10 +8,7 @@ import { MarkdownResponse } from 'src/app/contracts/markdown';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
-  @Input() items: Observable<MarkdownResponse[]>;
-  @Input() baseUrl: string;
-
-  @Input() urlAttribute = 'route';
+  @Input() items: Observable<Markdown[]>;
 
   constructor() {}
 
