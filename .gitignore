@@ -1,10 +1,20 @@
+# General
 node_modules
+dist/
+
+# Ide
 .idea/
 .vscode/
-dist/
+
+# Scully
 src/assets/scully-routes.json
 src/assets/tags.json
 scripts/posts.json
 scripts/conferences.json
 
+# Firebase
 .firebase/
+
+# Cypress
+cypress/videos
+cypress/screenshots

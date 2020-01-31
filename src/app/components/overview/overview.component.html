@@ -2,18 +2,17 @@
     <div class="col mb-4" *ngFor="let item of items">
         <div class="card h-100">
             <div class="image-container card-img-top">
-                <a [routerLink]="[item.route]">
+                <a [routerLink]="item.route">
                     <img [src]="item.image" class="card-image">
                 </a>
             </div>
             <div class="card-body position-relative">
-                <a [routerLink]="[item.route]" class="title-link">
+                <a [routerLink]="item.route" class="title-link">
                     <h5 class="card-title">{{ item.title }}</h5>
                 </a>
                 <p class="card-text">{{ item.description }}</p>
                 <div class="read-more-container">
-                    <a [routerLink]="[item.route]"
-                        class="btn btn-dark btn-sm read-more">{{ 'posts.read_more' | translate }}</a>
+                    <a [routerLink]="item.route" class="btn btn-dark btn-sm read-more">{{ 'posts.read_more' | translate }}</a>
                 </div>
             </div>
             <div class="card-footer text-muted">
