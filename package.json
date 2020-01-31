@@ -18,7 +18,7 @@
     "test-content": "npm run index && node ./scripts/content-test.js",
     "index:optimize": "npm run index && npm run optimize-json",
     "count-tags": "node ./scripts/count-tags.js",
-    "build": "npm run index && node ./scripts/count-tags.js && npx ng build && npx scully && sleep 1 && npx scully"
+    "build": "npm run index && node ./scripts/count-tags.js && npx ng build && start-server-and-test scully:serve http://localhost:1864 scully"
   },
   "private": true,
   "dependencies": {
