@@ -3,7 +3,7 @@ describe("Open posts", () => {
         cy.visit("http://localhost:8080/posts");
     });
     it("Should open a post", () => {
-        cy.get('.col:first-child a.btn.btn-dark.btn-sm.read-more').click();
+        cy.get('.post-item:first-child a.btn.btn-dark.btn-sm.read-more').click();
     })
 });
 
