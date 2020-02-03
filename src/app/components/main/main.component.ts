@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, takeUntil, switchMap, tap } from 'rxjs/operators';
@@ -6,11 +6,27 @@ import { Subject, Observable, forkJoin, of } from 'rxjs';
 import { PostsService } from 'src/app/services/posts.service';
 import { ConferencesService } from 'src/app/services/conferences.service';
 import { Conferences, Posts } from 'src/app/contracts/markdown';
+import { trigger, state, transition, animate, style } from '@angular/animations';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
+  // tslint:disable-next-line: no-host-metadata-property
+  host: { '(window:resize)': 'setMobileNav($event)' },
+  animations: [
+    trigger('toggleNav', [
+      state('out', style({
+        height: '*'
+      })),
+
+      state('in', style({
+        height: '0px'
+      })),
+
+      transition('* <=> *', animate('300ms ease-in-out'))
+    ])
+  ]
 })
 export class MainComponent implements OnInit, OnDestroy {
   githubPath = environment.github;
@@ -24,11 +40,17 @@ export class MainComponent implements OnInit, OnDestroy {
 
   searchForm: FormGroup;
 
+  showNav = 'in';
+
   get search(): AbstractControl {
     return this.searchForm.get('search');
   }
 
-  constructor(private postsService: PostsService, private confsService: ConferencesService) {}
+  get isMobile() {
+    return (window.innerWidth >= 768) ? false : true;
+  }
+
+  constructor(private postsService: PostsService, private confsService: ConferencesService) { }
 
   ngOnInit(): void {
     this.searchForm = this.createSearchForm();
@@ -39,19 +61,29 @@ export class MainComponent implements OnInit, OnDestroy {
       switchMap(searchvalue =>
         searchvalue
           ? forkJoin([
-              this.postsService.getPosts(searchvalue).then(posts => {
-                return { title: 'Posts', hits: posts, prefix: '/posts' };
-              }),
-              this.confsService.getConferences(searchvalue).then(confs => {
-                return { title: 'Conferences', hits: confs, prefix: '/conferences' };
-              })
-            ])
+            this.postsService.getPosts(searchvalue).then(posts => {
+              return { title: 'Posts', hits: posts, prefix: '/posts' };
+            }),
+            this.confsService.getConferences(searchvalue).then(confs => {
+              return { title: 'Conferences', hits: confs, prefix: '/conferences' };
+            })
+          ])
           : of([])
       ),
       tap(() => {
         this.showSearchResults = true;
       })
     );
+
+    this.setMobileNav();
+  }
+
+  setMobileNav(event?: any) {
+    if (!this.isMobile) {
+      this.showNav = 'out';
+    } else {
+      this.showNav = 'in';
+    }
   }
 
   ngOnDestroy(): void {
@@ -64,6 +96,15 @@ export class MainComponent implements OnInit, OnDestroy {
       search: new FormControl()
     });
   }
+
+  toggleNav() {
+    this.showNav = (this.showNav === 'out') ? 'in' : 'out';
+  }
+
+  closeNav() {
+    this.showNav = 'in';
+  }
+
 }
 
 export interface SearchResult {
