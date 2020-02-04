@@ -1,0 +1,29 @@
+<form [formGroup]="form" class="search-wrapper">
+    <input type="text" formControlName="search" class="form-control search-input"
+        [class.has-results]="showSearchResults && search.value" [placeholder]="'general.menu.search' | translate"
+        #searchInput>
+    <i class="fa fa-times-circle close-icon" (click)="close()"></i>
+</form>
+
+<ng-container *ngIf="searchResults$ | async as searchResults">
+    <div *ngIf="showSearchResults && search.value" class="results">
+        <ng-container *ngIf="searchResults[0].hits.length > 0 || searchResults[1].hits.length > 0; else noResults">
+            <ng-container *ngFor="let searchResult of searchResults">
+                <ng-container *ngIf="searchResult.hits.length">
+                    <h4>{{ searchResult.title }}</h4>
+                    <ul>
+                        <li *ngFor="let hit of searchResult.hits" class="search-result"
+                            [routerLink]="[searchResult.prefix, hit.basename]"
+                            (click)="showSearchResults = false; close()">
+                            {{ hit.title }}
+                        </li>
+                    </ul>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </div>
+</ng-container>
+
+<ng-template #noResults>
+    <span class="no-results">{{ 'general.search.no_result' | translate }}</span>
+</ng-template>

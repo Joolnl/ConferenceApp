@@ -1,3 +1,4 @@
+import { ModalModule } from './modules/modal/modal.module';
 import { ComponentShareModule } from './modules/component-share/component-share.module';
 import { SharedModule } from './modules/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -33,7 +34,9 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    ComponentShareModule
+    ComponentShareModule,
+
+    ModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

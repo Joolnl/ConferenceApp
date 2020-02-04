@@ -1,12 +1,10 @@
-import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
+import { SearchModalComponent, SearchResult } from './../../modules/modal/components/search-modal/search-modal.component';
+import { ModalService } from './../../modules/modal/services/modal.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, takeUntil, switchMap, tap } from 'rxjs/operators';
-import { Subject, Observable, forkJoin, of } from 'rxjs';
-import { PostsService } from 'src/app/services/posts.service';
-import { ConferencesService } from 'src/app/services/conferences.service';
-import { Conferences, Posts } from 'src/app/contracts/markdown';
+import { Subject, Observable } from 'rxjs';
 import { trigger, state, transition, animate, style } from '@angular/animations';
+import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
 
 export enum MenuState {
   In = 'in',
@@ -21,13 +19,19 @@ export enum MenuState {
   host: { '(window:resize)': 'setMobileNav($event)' },
   animations: [
     trigger('toggleNav', [
-      state(MenuState.Out, style({
-        height: '*'
-      })),
+      state(
+        MenuState.Out,
+        style({
+          height: '*'
+        })
+      ),
 
-      state(MenuState.In, style({
-        height: '0px'
-      })),
+      state(
+        MenuState.In,
+        style({
+          height: '0px'
+        })
+      ),
 
       transition('* <=> *', animate('300ms ease-in-out'))
     ])
@@ -52,34 +56,12 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   get isMobile(): boolean {
-    return (window.innerWidth >= 768) ? false : true;
+    return window.innerWidth >= 768 ? false : true;
   }
 
-  constructor(private postsService: PostsService, private confsService: ConferencesService) { }
+  constructor(private modalService: ModalService) {}
 
   ngOnInit(): void {
-    this.searchForm = this.createSearchForm();
-
-    this.searchResults$ = this.search.valueChanges.pipe(
-      debounceTime(this.debounceTime),
-      takeUntil(this.destroy$),
-      switchMap(searchvalue =>
-        searchvalue
-          ? forkJoin([
-            this.postsService.getPosts(searchvalue).then(posts => {
-              return { title: 'Posts', hits: posts, prefix: '/posts' };
-            }),
-            this.confsService.getConferences(searchvalue).then(confs => {
-              return { title: 'Conferences', hits: confs, prefix: '/conferences' };
-            })
-          ])
-          : of([])
-      ),
-      tap(() => {
-        this.showSearchResults = true;
-      })
-    );
-
     this.setMobileNav();
   }
 
@@ -103,17 +85,18 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   toggleNav(): void {
-    this.showNav = (this.showNav === MenuState.Out) ? MenuState.In : MenuState.Out;
+    this.showNav = this.showNav === MenuState.Out ? MenuState.In : MenuState.Out;
   }
 
   closeNav(): void {
     this.showNav = MenuState.In;
   }
 
-}
+  openModal() {
+    this.modalService.createModal(SearchModalComponent);
 
-export interface SearchResult {
-  title: string;
-  hits: Posts[] | Conferences[];
-  prefix: string;
+    if (this.isMobile) {
+      this.closeNav();
+    }
+  }
 }
