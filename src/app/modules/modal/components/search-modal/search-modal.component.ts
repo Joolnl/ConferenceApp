@@ -1,7 +1,7 @@
 import { ConferencesService } from './../../../../services/conferences.service';
 import { PostsService } from './../../../../services/posts.service';
 import { Subject, Observable, forkJoin, of } from 'rxjs';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { Component, OnInit, Renderer2, Inject, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Modal } from '../../classes/modal';
 import { OVERLAY_TOKEN, OverlayToken } from '../../contracts/overlay';
@@ -22,7 +22,7 @@ export class SearchModalComponent extends Modal implements OnInit, OnDestroy {
   debounceTime = 400;
   showSearchResults = false;
 
-  get search() {
+  get search(): AbstractControl {
     return this.form.get('search');
   }
 
@@ -65,7 +65,7 @@ export class SearchModalComponent extends Modal implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  createSearchForm() {
+  createSearchForm(): FormGroup {
     return new FormGroup({
       search: new FormControl()
     });

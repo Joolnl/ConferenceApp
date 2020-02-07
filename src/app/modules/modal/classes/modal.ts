@@ -4,7 +4,7 @@ import { OVERLAY_TOKEN, OverlayToken } from '../contracts/overlay';
 export abstract class Modal {
   constructor(protected renderer: Renderer2, @Inject(OVERLAY_TOKEN) protected overlay: OverlayToken) {}
 
-  close() {
+  close(): void {
     this.overlay.overlayRef.dispose();
   }
 

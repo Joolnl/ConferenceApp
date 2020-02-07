@@ -20,7 +20,7 @@ export class ModalService {
     return new PortalInjector(this.injector, injectionTokens);
   }
 
-  createModal(component: any, data?: OverlayTokenData, options?: { [key: string]: any }) {
+  createModal(component: any, data?: OverlayTokenData, options?: { [key: string]: any }): void {
     const overlayRef = this.overlay.create(options ? options : { hasBackdrop: true, width: '100%' });
     const portal = new ComponentPortal(component, null, this.createInjector(overlayRef, data || {}));
     overlayRef.attach(portal);
