@@ -8,6 +8,11 @@ import { ConferencesService } from 'src/app/services/conferences.service';
 import { Conferences, Posts } from 'src/app/contracts/markdown';
 import { trigger, state, transition, animate, style } from '@angular/animations';
 
+export enum MenuState {
+  In = 'in',
+  Out = 'out'
+}
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -16,11 +21,11 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
   host: { '(window:resize)': 'setMobileNav($event)' },
   animations: [
     trigger('toggleNav', [
-      state('out', style({
+      state(MenuState.Out, style({
         height: '*'
       })),
 
-      state('in', style({
+      state(MenuState.In, style({
         height: '0px'
       })),
 
@@ -40,13 +45,13 @@ export class MainComponent implements OnInit, OnDestroy {
 
   searchForm: FormGroup;
 
-  showNav = 'in';
+  showNav = MenuState.In;
 
   get search(): AbstractControl {
     return this.searchForm.get('search');
   }
 
-  get isMobile() {
+  get isMobile(): boolean {
     return (window.innerWidth >= 768) ? false : true;
   }
 
@@ -78,11 +83,11 @@ export class MainComponent implements OnInit, OnDestroy {
     this.setMobileNav();
   }
 
-  setMobileNav(event?: any) {
+  setMobileNav(event?: any): void {
     if (!this.isMobile) {
-      this.showNav = 'out';
+      this.showNav = MenuState.Out;
     } else {
-      this.showNav = 'in';
+      this.showNav = MenuState.In;
     }
   }
 
@@ -91,18 +96,18 @@ export class MainComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  createSearchForm() {
+  createSearchForm(): FormGroup {
     return new FormGroup({
       search: new FormControl()
     });
   }
 
-  toggleNav() {
-    this.showNav = (this.showNav === 'out') ? 'in' : 'out';
+  toggleNav(): void {
+    this.showNav = (this.showNav === MenuState.Out) ? MenuState.In : MenuState.Out;
   }
 
-  closeNav() {
-    this.showNav = 'in';
+  closeNav(): void {
+    this.showNav = MenuState.In;
   }
 
 }
