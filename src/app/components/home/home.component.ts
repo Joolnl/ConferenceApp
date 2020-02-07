@@ -11,7 +11,6 @@ import { TagItems } from 'src/app/contracts/tags';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
   popularTags$: Observable<TagItems>;
   posts$: Observable<ScullyRoute[]>;
   conferences$: Observable<ScullyRoute[]>;
@@ -24,5 +23,4 @@ export class HomeComponent {
     this.posts$ = this.routes.getRoutes('posts', this.limit);
     this.conferences$ = this.routes.getRoutes('conferences', this.limit);
   }
-
 }

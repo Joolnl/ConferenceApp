@@ -9,23 +9,19 @@ import { Markdown } from '../contracts/markdown';
   providedIn: 'root'
 })
 export class AppRoutesService {
-
-  constructor(private scullyRoutes: ScullyRoutesService) { }
+  constructor(private scullyRoutes: ScullyRoutesService) {}
 
   getRoutes(filter?: string, limit?: number, offset = 0): Observable<ScullyRoute[]> {
     return this.scullyRoutes.allRoutes$.pipe(
-      map(routes => (filter) ? routes.filter(items => items.route.includes(`${filter}/`)) : routes),
+      map(routes => (filter ? routes.filter(items => items.route.includes(`${filter}/`)) : routes)),
       map(routes => routes.sort(sortByDate)),
-      map(routes => (limit) ? routes.slice(offset, limit) : routes)
+      map(routes => (limit ? routes.slice(offset, limit) : routes))
     );
   }
 
   getRoutesByMarkdown(markdown: Markdown[], prefix: string): Observable<ScullyRoute[]> {
     const baseNames = markdown.map(md => `/${prefix}/${md.basename}`);
 
-    return this.scullyRoutes.allRoutes$.pipe(
-      map(routes => routes.filter(route => baseNames.includes(route.route)))
-    );
+    return this.scullyRoutes.allRoutes$.pipe(map(routes => routes.filter(route => baseNames.includes(route.route))));
   }
-
 }
