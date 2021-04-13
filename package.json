@@ -35,7 +35,7 @@
     "@ngx-translate/http-loader": "^4.0.0",
     "@scullyio/init": "0.0.17",
     "@scullyio/ng-lib": "0.0.13",
-    "@scullyio/scully": "0.0.60",
+    "@scullyio/scully": "1.0.9",
     "algoliasearch": "^3.35.1",
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
